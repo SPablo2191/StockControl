@@ -18,6 +18,14 @@ def get_products(request):
     }
     return HttpResponse(template.render(context, request))
 
+def get_suppliers(request):
+    suppliers = Supplier.objects.order_by("id")
+    template = loader.get_template("suppliers.html")
+    context = {
+        "suppliers": suppliers,
+    }
+    return HttpResponse(template.render(context, request))
+
 
 def add_product(request):
     suppliers = Supplier.objects.order_by("id")
