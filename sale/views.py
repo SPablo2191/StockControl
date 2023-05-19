@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import request, HttpResponse
-from .models import Product
+from .models import Product,Supplier
 from django.template import loader
 
 
@@ -19,5 +19,9 @@ def get_products(request):
     return HttpResponse(template.render(context, request))
 
 def add_product(request):
+    suppliers = Supplier.objects.order_by("name")
     template = loader.get_template("add_product.html")
-    return HttpResponse(template.render())
+    context = {
+        "suppliers": suppliers,
+    }
+    return HttpResponse(template.render(context,request))
