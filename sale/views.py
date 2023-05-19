@@ -28,6 +28,11 @@ def add_product(request):
     return HttpResponse(template.render(context, request))
 
 
+def add_supplier(request):
+    template = loader.get_template("add_supplier.html")
+    return HttpResponse(template.render())
+
+
 def register_product(request):
     try:
         supplier_id = request.POST.get("supplier", False)
@@ -38,11 +43,33 @@ def register_product(request):
     except:
         return HttpResponse("Error no se pudo completar el formulario.")
     finally:
-        new_product = Product(name=name, price=price, current_stock=current_stock,supplier=supplier)
+        new_product = Product(
+            name=name, price=price, current_stock=current_stock, supplier=supplier
+        )
         new_product.save()
     template = loader.get_template("success.html")
     context = {
-        "message": 'Se registro el producto con exito!!!',
+        "message": "Se registro el producto con exito!!!",
     }
     return HttpResponse(template.render(context, request))
 
+
+def register_supplier(request):
+    try:
+        supplier_id = request.POST.get("supplier", False)
+        supplier = get_object_or_404(Supplier, pk=supplier_id)
+        name = request.POST.get("name", False)
+        price = request.POST.get("price", False)
+        current_stock = request.POST.get("current_stock", False)
+    except:
+        return HttpResponse("Error no se pudo completar el formulario.")
+    finally:
+        new_product = Product(
+            name=name, price=price, current_stock=current_stock, supplier=supplier
+        )
+        new_product.save()
+    template = loader.get_template("success.html")
+    context = {
+        "message": "Se registro el producto con exito!!!",
+    }
+    return HttpResponse(template.render(context, request))
