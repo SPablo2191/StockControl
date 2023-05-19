@@ -16,45 +16,30 @@
     <div class="container my-4">
       <h1>Añadir Proveedor</h1>
       <form action="{% url 'sale:register_supplier' %}" method="post">
-        {% csrf_token %}
+          {% csrf_token %}
         <div class="mb-3">
           <label for="name" class="form-label">Nombre</label>
           <input type="text" class="form-control" id="name" name="name" />
         </div>
         <div class="mb-3">
-          <label for="current_stock" class="form-label">Stock Actual</label>
+          <label for="current_stock" class="form-label">Apellido</label>
           <input
-            type="number"
+            type="text"
             class="form-control"
-            id="current_stock"
-            name="current_stock"
+            id="last_name"
+            name="last_name"
           />
         </div>
         <div class="mb-3">
-          <label for="price" class="form-label">Precio</label>
-          <input type="number" class="form-control" id="price" name="price" />
-        </div>
-        <div class="my-4">
-          <label for="supplier" class="form-label">Proveedores</label>
-          <select name="supplier" id="supplier" class="form-control">
-            {% for supplier in suppliers %}
-            <option
-              value="{{supplier.id}}"
-              name="supplier"
-              id="{{supplier.id}}"
-            >
-              {{supplier.last_name}}
-            </option>
-            {% endfor %}
-          </select>
+          <label for="price" class="form-label">DNI</label>
+          <input type="number" class="form-control" id="DNI" name="DNI" />
         </div>
         <button type="submit" class="btn btn-primary mt-4">
-          Añadir Producto
+          Añadir Proveedor
         </button>
       </form>
     </div>
 
-    <!-- Javascript -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
       integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
